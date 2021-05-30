@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    
+    <a href="index.html">Zurück zur Maschine</a>
+
+    <div class="title">
+        <h1>Dokumentation - Grammatik Maschine</h1>
+        <p>Dokumentation zur zweiten Abgabeaufgabe.</p>
+    </div>
+    
+    <div class="technisch">
+        <h1>Technische Aspekte</h1>
+        
+        <div class="einleitung">
+            <h2>Begriffserklärung: Grammatik</h2>
+            <p>Eine kontextfreie Grammatik lässt sich durch einen 4er-Tupel mit den folgenden Elementen darstellen:</p>
+            <ul>
+            <li>V </li>
+                <ul>
+                <li>Eine endliche, nicht leere Menge von Nichtterminalzeichen.</li>
+                </ul>
+            <li>&sum;</li>
+                <ul>
+                <li>EinAlphabet von Terminalszeichen.</li>
+                </ul>
+            <li>R</li>
+                <ul>
+                <li>Eine endliche Menge von Regeln oder Produktionen.</li>
+                </ul>
+            <li>S</li>
+                <ul>
+                <li>Ist Element von V und die Startvariable.</li>
+                </ul>
+            </ul>
+            <p>Eine Grammatik G ist definiert als: G = {V, &sum;. R, S}</p>
+        </div>
+        
+        <div class="Frameworks und technische Besonderheiten">
+            <h2>Verwendete Frameworks</h2>
+            <p>Ich habe zur Lösung dieser Aufgabe keinerlei Frameworks verwendet, was auch Gleichzeitig eine der technischen Besonderheiten meiner Lösung darstellt. Sie stützt sich nur auf basis Javascript und erfordert keine weitergehenden Kenntnisse.</p>
+            
+            <p>Weiterhin bemerkenswert ist die Erstellung und anschließende Umkehrung von nicht einem, sodern Zwei String Arrays, um die Visualisierung der Regelanwendungsschritte umzusetzen. Eines für die Ergebniszeile und eines mit der Angewendeten Regel, um die Einfärbung derselben zum richtigen Zeitpunkt zu bewerkstelligen</p>
+            
+            <p>Auch die Umsetzung der automatischen Anzeige der Ergebnisse mit variabler Geschwindigkeit ist auf kreative Weise gelöst worden. Die betreffende Funktion ruft sich, solange keine Pause gesetzt ist und die letzte Zeile des Ergebnisses nicht erreicht wurde mit variabler verzögerung selbst auf.</p>
+        </div>
+        
+        <div class="Frameworks und technische Besonderheiten">
+            <h2>Fachliche Umsetzung<h2>
+            
+            <h3>Erzeugung von zufälligen Ausdrücken und manuelle Eingabe</h3>
+            
+            <p>Die beiden Funktionen generateRandomWrongExpr() und generateRandomRightExpr() zeigen zufällig erzeugte Ausdrücke im Eingabefenster an, die von ihren jeweiligen Hilfsfunktionen getFalschAusdruck() und getRichtigAusdruck() erzeugt und anschließend in Anzeigefähige Strings umgewandelt wurden.</p>
+            
+            <p>Bei der Verwendung eines manuell eingegebenen Terms, wird einfach das Eingabefeld ausgelesen</p>
+            
+            <h3>Durchführung der Ersetzung</h3>
+            
+            <p>Der automatisch erzeugte, oder manuell eingegebene Ausdruck wird nun von der Funktion checkWord() geprüft und, soweit er korrekt ist, auch verarbeitet. CheckWord() wird sowohl bei automatischer, als auch bei schrittweiser Durchführung nur einmal am Beginn des Prozesses ausgeführt und erzeugt zu diesem Zeitpunkt alle Zwischenschritte, die später einzeln angezeigt werden.</p>
+            
+            <p>Dafür werden zunächst alle Ziffern im Ausdruck (sofern vorhanden) durch "Z" ersetzt. Anschließend alle Operanten durch "O" und alle "Z" in "A" umgewandelt.</p>
+            
+            <p>Die Funktion isOrderCorrect() prüft nun den so erzeugten Ausdruck gegen eine Liste von ungültigen Bestandteilen wie ")(", oder "ZZ". wird ein solcher Bestandteil erkannt, wird die weitere Ausführung der Funktion unterbunden.</p>
+            
+            <p>Gibt isOrderCorrect() uns das grüne Licht, werden Schrittweise alle Instanzen von "AOA" durch "A" ersetzt.</p>
+            
+            <p>Da ich zeigen will, wie ein Term aus der Grammatik erzeugt werden kann und nicht wie man einen Ausdruck auf die Startvariable reduzieren kann, werden die aufgezeichneten Umwandlungsschritte nun mit reverse() umgekehrt. So kann man das String Array mit den Aufzeichnung vorwärts durchlaufen und den Term von der Startvariable ausgehend erzeugen.</p>
+            
+            <h3>Darstellung der Ergebnisses</h3>
+            
+            <p>Die Darstellung des Ergebnisses ist über die Kontrollbuttons "Start", Pause" und "Schritt Vorwärts" steuerbar. Diese Kontrollen sind zu jeder Zeit Bedienbar, zu der die Anzeige des Ergebnisses noch nicht abgeschlossen ist. So kann man z.B. Die automatische Anzeige starten, nach 2 Zeilen pausieren, eine Zeile manuell mit "Schritt Vorwärts" einfügen und die automatische Anzeige mit "Start" fortsetzen.</p>
+            
+            <p>Die autmatische darstellung wird dabei durch eine rekursive Funktion realisiert, die sich nach einem durch den Geschwindigkeitsregler steuerbaren delay selbst aufruft, außer die Puase Taste wurde gedrückt.</p>
+            
+            <p>Die Einfärbung der zum Umformungsschritt zugehörigen Regel wird durch ein zweites String Array realisiert, das bei der Umformung ebenfalls befüllt wird und die verwendete Regel enthält. </p>
+        </div>
+        
+    </div>
+    
+    </body>
+</html> 

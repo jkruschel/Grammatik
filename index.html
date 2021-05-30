@@ -2,11 +2,87 @@
 <html lang="">
   <head>
     <meta charset="utf-8">
-    <title>Grammatik Automat</title>
+        <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <header>Grammatik Automat</header>
-    <main>test test test</main>
-    <footer></footer>
+    <main>
+    <div class="box">
+        <div class="bodies-oben">
+            <h1>Grammatik Maschine</h1>
+        </div>
+        <!-- oberes Feld -->
+        <div class="bodies">
+            
+            <!-- Ausgabe des Skripts-->
+            <div class="anzeige">
+                <span id="stepsbox"></span>
+            </div>                   
+        </div>
+        
+        <!-- Unteres Feld -->
+        <div class="bodies-unten">
+            <!-- Beschreibungstext-->
+            <div class="beschreibung">
+                <p>Grammatik G = (V, &sum;, R, S)</p>
+                <p>V = {A, O, Z}</p>
+                <p>&sum; = {0-9, +, -, *, /, (, )}</p>
+                <p>S = Ausgangspunkt</p>
+            </div>
+            
+            <div class="eingabebox">
+
+                    <div class="eingabefeld">
+                        <div class="buttons">
+                            
+                            <button onclick="document.location='Doku.html'">Dokumentation</button>
+
+                            <p>Ausdruck generieren:</p>
+                            <div class="gen_but_zufall">
+
+                                <button title="Erzeugt einen zufälligen, gültigen Ausdruck" id="gen_but_corr" onclick="generateRandomRightWord()">Valider Audruck</button>
+                                <button title="Erzeugt einen zufälligen, ungültigen Ausdruck" id="gen_but_wrong" onclick="generateRandomWrongExpr()">Falscher Ausdruck</button>
+
+                            </div>
+                            <p>Ausdruck manuell eingeben:</p>
+                        </div>
+
+                        <form onsubmit="return false" autocomplete="off">
+                            <input autocomplete="off" type="text|submit" id="input" name="feldname"
+                                oninput="value = value.toUpperCase()"></input>
+
+                        </form>
+                        <span id="isExpCorrect"></span>
+                        <p></p>
+                    </div>
+
+                    <div class="Kontrollfeld">
+                        <div class="container_control">
+
+                            <button title="Startet die automatische Ausgabe des Ergebnisses oder setzt sie nach Pause fort" id="start" onclick="autoForward()">Start</button>
+                            <button title="Pausiert die automatische Wiedergabe" id="Pause" onclick="pause()">Pause</button>
+                            <button title="Erzeugt die nächste Zeile des Ergebnisses" id="step" onclick="stepForward()">Schritt Vorwärts</button>
+                            <button title="Setzt die Maschine auf den Anfangszustand zurück" id="reset" onClick="reset()">Reset</button>
+
+                            <div class="slidecontainer">
+                                <span id="speed">Geschwindigkeit:</span>
+                                <input type="range" min="1" max="10" value="5" class="slider" id="speed"
+                                    oninput="setSpeed(value)">
+                            </div>
+
+                        </div>
+                </div>
+        </div>
+            <!-- Angewandte regeln -->
+            <div class="regelbox" id="regelbox">
+                <div>
+                    <p>R =</p>
+                    <p><span id='A'>A &rarr; AOA | (A) Z</span></p>
+                    <p><span id="O">O &rarr; +| - | / | *</span></p>
+                    <p><span id="Z2">Z &rarr; 0 | ... | 9</span></p>
+                </div>
+            </div>
+    </div>
+    </main>
+    <script src="grammatik.js"></script>
   </body>
 </html>
